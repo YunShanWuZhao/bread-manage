@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.bread.controller.OrderController"
+            prefHeight="600.0" prefWidth="900.0">
+
+    <VBox fx:id="vb_content">
+        <HBox fx:id="hb_head">
+            <!--<ComboBox>
+
+            </ComboBox>-->
+            <Button text="发货" fx:id="btn_deliver" onAction="#deliver">
+                <HBox.margin>
+                    <Insets left="760" top="15"/>
+                </HBox.margin>
+            </Button>
+            <Pane prefHeight="20" minHeight="20" maxHeight="20"/>
+        </HBox>
+
+        <TableView fx:id="orderTable" prefWidth="800" minWidth="800">
+            <VBox.margin>
+                <Insets top="20"/>
+            </VBox.margin>
+        </TableView>
+    </VBox>
+
+
+</AnchorPane>

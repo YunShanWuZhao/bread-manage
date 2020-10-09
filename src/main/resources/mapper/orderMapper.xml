@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.bread.persist.mapper.OrderMapper">
+    <select id="selectOrder" resultType="org.example.bread.model.OrderInfo">
+    select * from shop_order where status='1' order by id desc
+  </select>
+
+    <select id="selectOrderDetail" resultType="org.example.bread.model.OrderDetailInfo">
+        select d.* from shop_order_detail d where order_id=#{orderId}
+    </select>
+
+    <update id="deliverOrder" >
+        update shop_order set status='2' where order_num = #{orderNum}
+    </update>
+</mapper>
