@@ -16,7 +16,9 @@ import org.example.bread.model.OrderDetailInfo;
 import org.example.bread.model.OrderInfo;
 import org.example.bread.persist.SqlConnection;
 import org.example.bread.persist.mapper.OrderMapper;
+import org.example.bread.util.Sound;
 
+import java.io.File;
 import java.net.URL;
 import java.util.*;
 
@@ -26,6 +28,8 @@ public class OrderController implements Initializable {
     public TableView orderTable;
 
     private static Long lastOrderId = 0L;
+
+    private Sound sound;
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,7 +57,7 @@ public class OrderController implements Initializable {
                 System.out.println("开始查询待发货订单");
                 queryData();
             }
-        }, 10000,10000);
+        }, 15000,15000);
     }
 
     @FXML
@@ -77,6 +81,9 @@ public class OrderController implements Initializable {
             for(OrderInfo orderInfo:orderInfos){
                 if(orderInfo.getId() > lastOrderId){
                     System.out.println("存在新的订单，发送通知");
+                    sound = new Sound(new File("alert.mp3"), false);
+                    sound.play();
+                    System.out.println("播放完毕");
                     //todo
                 }
                 OrderData orderData = new OrderData();
@@ -95,7 +102,7 @@ public class OrderController implements Initializable {
                 orderInfoList.add(orderData);
             }
             if(orderInfos.size() > 0){
-                lastOrderId = orderInfos.get(orderInfos.size()-1).getId();
+                lastOrderId = orderInfos.get(0).getId();
             }
             orderDataList = FXCollections.observableList(orderInfoList);
         }
